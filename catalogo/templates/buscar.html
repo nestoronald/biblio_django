@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
 {% block cabecera %}
-            
+<h5>Resultados de busqueda</h5>
 {% endblock %}
 {% block content %}
-<h4>Su busqueda esta siendo procesada</h4>
+    <p>Termino de busqueda
+    <span class="label label-info">Titulo<span class="label_1">{{s}}</span></span></p>
+    {% if items %}
+        {% for item in items %}
+            <p><b>Título:</b>
+            {{item.title}}</p>
+        {% endfor %}
+    {% else %}
+        <p>No hay resultados</p>
+    {% endif %}
 {% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block cabecera %}
+            <div class="slider-igp">
+                <img src="/static/img/demo_home.jpg" alt="" />
+            </div>
+{% endblock %}
+{% block content %}
+<div class="span7 offset3">			
+	<form id="formSearch" method="POST" action="buscar/">
+		{% csrf_token %}
+				<p>Buscar por los siguientes criterios:</p>
+				<input type="hidden" id="search_cat" name="search_cat" value="b_libros">
+				<input type="hidden" id="search_option0" name="search_option" value="s_simple">
+				<label class="checkbox inline">
+				<input type="radio" id="query_type_1" name="query_type" value="title" checked=""> Título
+				</label><label class="checkbox inline">
+				<input type="radio" id="query_type_1" name="query_type" value="author"> Autor
+				</label><label class="checkbox inline">
+				<input type="radio" id="query_type_2" name="query_type" value="tema"> Tema
+				</label>
+				<label class="checkbox inline">
+					  <input type="radio" id="query_type_3" name="query_type" value="b_all">Todos los campos
+				</label>
+
+				<div class="clear"></div>
+				<div>
+                <div id="div_tituloSearch" class="contenedor-caja-buscador-1">
+                        <input name="fieldSearch" type="text"  autocomplete="off" >
+                </div>
+				</div>
+                <button id="btn-search" type="submint">Buscar</button>
+                <button id="btn-clear">Limpiar</button>
+
+				<div class="clear"></div>
+				<div id="msj_query_type">
+				<span>(Puede omitir las tildes y/o mayúsculas)</span>
+				<span id="search-advanced" data-original-title="" title=""><a href="#search-advanced"  title="Clik aquí para una búsqueda avanzada">Búsqueda avanzada</a></span>
+				</div>
+				
+	</form>
+</div>
+{% endblock %}

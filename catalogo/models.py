@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
@@ -22,29 +23,28 @@ class Language(models.Model):
 
 class Item(models.Model):
     title = models.CharField(max_length=200)
-    typ = models.ForeignKey(ItemType)
-    fx_register = models.DateTimeField(blank=True, null=True)
+    typ = models.ForeignKey(ItemType, verbose_name="Tipo de material")
+    fx_register = models.DateTimeField(blank=True, null=True, verbose_name="Fecha de Registro")
     isbn = models.CharField(max_length=70, blank=True)
-    language = models.ForeignKey(Language)
+    language = models.ForeignKey(Language,verbose_name="Idioma")
     lc = models.CharField(max_length=70, blank=True)
     dewey = models.CharField(max_length=70, blank=True)
-    code_igp = models.CharField(max_length=70, blank=True)
-    number_edition = models.CharField(max_length=70, blank=True)
-    des_pagination = models.CharField(max_length=70, blank=True)
-    des_ilustration = models.CharField(max_length=70, blank=True)
-    des_dimension = models.CharField(max_length=70, blank=True)
-    note_thesis = models.TextField(blank=True)
-    note_bibliographic = models.TextField(blank=True)
-    note_content = models.TextField(blank=True)
-    note_content = models.TextField(blank=True)
-    summary = models.TextField(blank=True)
-    title_secundary = models.TextField(blank=True)
-    fx_entry = models.DateTimeField(blank=True, null=True)
-    mode_acquisition = models.CharField(max_length=70, blank=True)
-    cataloger = models.CharField(max_length=70, blank=True)
-    location_physical = models.CharField(max_length=70, blank=True)
-    location_electronic = models.CharField(max_length=70, blank=True)
-    image = models.ImageField(upload_to='static/img', blank=True)
+    code_igp = models.CharField(max_length=70, blank=True, verbose_name="Codificación IGP")
+    number_edition = models.CharField(max_length=70, blank=True, verbose_name="Número de Edición")
+    des_pagination = models.CharField(max_length=70, blank=True, verbose_name="Paginación")
+    des_ilustration = models.CharField(max_length=70, blank=True, verbose_name="Ilustracion")
+    des_dimension = models.CharField(max_length=70, blank=True, verbose_name="Dimensión")
+    note_thesis = models.TextField(blank=True, verbose_name="Nota de tesis")
+    note_bibliographic = models.TextField(blank=True, verbose_name="Nota Bibliográfica")
+    note_content = models.TextField(blank=True, verbose_name="Nota de contenido")
+    summary = models.TextField(blank=True, verbose_name="Resumen")
+    title_secundary = models.TextField(blank=True, verbose_name="Título secundario")
+    fx_entry = models.DateTimeField(blank=True, null=True, verbose_name="Fecha de ingreso")
+    mode_acquisition = models.CharField(max_length=70, blank=True, verbose_name="Adquisición")
+    cataloger = models.CharField(max_length=70, blank=True, verbose_name="Catalogador")
+    location_physical = models.CharField(max_length=70, blank=True, verbose_name="Localización Física")
+    location_electronic = models.CharField(max_length=70, blank=True, verbose_name="Localización Electrónica")
+    image = models.ImageField(upload_to='book_img', blank=True, verbose_name="Imagen de Portada")
     def __unicode__(self):
         return self.title
 class Examplary(object):
@@ -95,7 +95,7 @@ class AuthorType(models.Model):
 class ItemAuthor(models.Model):
     item = models.ForeignKey(Item)
     author = models.ForeignKey(Author)
-    typ = models.ForeignKey(AuthorType)
+    typ = models.ForeignKey(AuthorType, verbose_name="Tipo de Autor")
     def __unicode__(self):
         tag = "%s %s"%(self.item.title, self.author.name)
         return tag

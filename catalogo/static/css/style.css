@@ -2184,3 +2184,6 @@ float:none;
 .main-title .span12 .container-fluid {
     background: #0d648c;
 }
+.main-bibblio .nav-collapse.collapse{
+    overflow: hidden !important;
+}
